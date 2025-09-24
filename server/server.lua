@@ -162,11 +162,11 @@ lib.callback.register('myDelivery:smeltIron', function(source)
     local Inventory = exports.ox_inventory:Inventory()
     local xPlayer = ESX.GetPlayerFromId(src)
 
-    if Inventory.CanCarryItem(src, "iron", 1) then
+    if Inventory.GetItem(src, "iron_ore", 1).count > 1 then
         Inventory.RemoveItem(src, "iron_ore", 3)
         Inventory.AddItem(src, "iron", 1)
     else
-        TriggerClientEvent('ox_lib:notify', src, { title = 'Delivery System', icon= 'ban', position = 'top', description = "Not enough space in your inventory!"})
+        TriggerClientEvent('ox_lib:notify', src, { title = 'Delivery System', icon= 'ban', position = 'top', description = "Not enough resources in your inventory!"})
     end
 end)
 
@@ -175,11 +175,11 @@ lib.callback.register('myDelivery:smeltDust', function(source)
     local Inventory = exports.ox_inventory:Inventory()
     local xPlayer = ESX.GetPlayerFromId(src)
 
-    if Inventory.CanCarryItem(src, "steel", 1) then
+    if Inventory.GetItem(src, "steel_ore", 1).count > 1 then
         Inventory.RemoveItem(src, "steel_ore", 2)
         Inventory.AddItem(src, "steel", 1)
     else
-        TriggerClientEvent('ox_lib:notify', src, { title = 'Delivery System', icon= 'ban', position = 'top', description = "Not enough space in your inventory!"})
+        TriggerClientEvent('ox_lib:notify', src, { title = 'Delivery System', icon= 'ban', position = 'top', description = "Not enough resources in your inventory!"})
     end
 end)
 
@@ -189,12 +189,11 @@ lib.callback.register('myDelivery:makeComp', function(source)
     local src = source
     local Inventory = exports.ox_inventory:Inventory()
     local xPlayer = ESX.GetPlayerFromId(src)
-
-    if Inventory.CanCarryItem(src, "component", 1) then
+    if Inventory.GetItem(src, "iron", 1).count > 1 and Inventory.GetItem(src, "steel", 1).count > 0 then
         Inventory.RemoveItem(src, "iron", 2)
         Inventory.RemoveItem(src, "steel", 1)
         Inventory.AddItem(src, "component", 1)
     else
-        TriggerClientEvent('ox_lib:notify', src, { title = 'Delivery System', icon= 'ban', position = 'top', description = "Not enough space in your inventory!"})
+        TriggerClientEvent('ox_lib:notify', src, { title = 'Delivery System', icon= 'ban', position = 'top', description = "Not enough resources in your inventory!"})
     end
 end)
