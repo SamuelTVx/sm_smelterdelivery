@@ -162,7 +162,7 @@ lib.callback.register('myDelivery:smeltIron', function(source)
     local Inventory = exports.ox_inventory:Inventory()
     local xPlayer = ESX.GetPlayerFromId(src)
 
-    if Inventory.GetItem(src, "iron_ore", 1).count > 1 then
+    if Inventory.GetItem(src, "iron_ore", 1).count > 2 then
         Inventory.RemoveItem(src, "iron_ore", 3)
         Inventory.AddItem(src, "iron", 1)
     else
